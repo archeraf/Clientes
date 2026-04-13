@@ -1,4 +1,4 @@
-﻿
+
 $(document).ready(function () {
 
     if (document.getElementById("gridClientes"))
@@ -25,9 +25,39 @@ $(document).ready(function () {
                     display: function (data) {
                         return '<button onclick="window.location.href=\'' + urlAlteracao + '/' + data.record.Id + '\'" class="btn btn-primary btn-sm">Alterar</button>';
                     }
+                },
+                Excluir: {
+                    title: '',
+                    display: function (data) {
+                        return '<button onclick="ExcluirCliente(' + data.record.Id + ')" class="btn btn-primary btn-sm">Excluir</button>';
+                    }
                 }
             }
         });
+
+    window.ExcluirCliente = function (id) {
+        if (confirm("Deseja realmente excluir este cliente?")) {
+            $.ajax({
+                url: urlExclusao,
+                method: "POST",
+                data: { id: id },
+                error: function (r) {
+                    if (r.status == 400)
+                        alert(r.responseJSON);
+                    else if (r.status == 500)
+                        alert("Ocorreu um erro interno no servidor.");
+                },
+                success: function (r) {
+                    if (r.Result == "OK") {
+                        alert(r.Message);
+                        $('#gridClientes').jtable('load');
+                    } else {
+                        alert(r.Message);
+                    }
+                }
+            });
+        }
+    }
 
     //Load student list from server
     if (document.getElementById("gridClientes"))

@@ -1,8 +1,8 @@
+using FI.AtividadeEntrevista.DAL.Interfaces;
 using FI.AtividadeEntrevista.DML;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
-using FI.AtividadeEntrevista.DAL.Interfaces;
 
 namespace FI.AtividadeEntrevista.DAL
 {
@@ -73,6 +73,7 @@ namespace FI.AtividadeEntrevista.DAL
             parametros.Add(new System.Data.SqlClient.SqlParameter("campoOrdenacao", campoOrdenacao));
             parametros.Add(new System.Data.SqlClient.SqlParameter("crescente", crescente));
 
+
             DataSet ds = base.Consultar("FI_SP_PesqCliente", parametros);
             List<DML.Cliente> cli = Converter(ds);
 
@@ -120,6 +121,7 @@ namespace FI.AtividadeEntrevista.DAL
             parametros.Add(new System.Data.SqlClient.SqlParameter("Email", cliente.Email));
             parametros.Add(new System.Data.SqlClient.SqlParameter("Telefone", cliente.Telefone));
             parametros.Add(new System.Data.SqlClient.SqlParameter("ID", cliente.Id));
+            parametros.Add(new System.Data.SqlClient.SqlParameter("DELETADO", cliente.Deletado));
 
             base.Executar("FI_SP_AltCliente", parametros);
         }
@@ -157,7 +159,7 @@ namespace FI.AtividadeEntrevista.DAL
                     cli.Sobrenome = row.Field<string>("Sobrenome");
                     cli.Telefone = row.Field<string>("Telefone");
                     cli.CPF = row.Field<string>("CPF");
-
+                    cli.Deletado = row.Field<bool>("Deletado");
                     lista.Add(cli);
                 }
             }

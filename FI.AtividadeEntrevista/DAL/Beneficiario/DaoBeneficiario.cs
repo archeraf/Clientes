@@ -76,6 +76,7 @@ namespace FI.AtividadeEntrevista.DAL
                     benef.CPF = row.Field<string>("CPF");
                     benef.Nome = row.Field<string>("Nome");
                     benef.IdCliente = row.Field<long>("IdCliente");
+
                     lista.Add(benef);
                 }
             }

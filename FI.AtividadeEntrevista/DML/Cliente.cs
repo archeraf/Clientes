@@ -64,6 +64,11 @@ namespace FI.AtividadeEntrevista.DML
         /// <summary>
         /// CPF
         /// </summary>
-        public string CPF { get; set; }        
+        public string CPF { get; set; }
+
+        /// <summary>
+        /// Flag que indica se o registro foi deletado logicamente
+        /// </summary>
+        public bool Deletado { get; set; }
     }    
 }

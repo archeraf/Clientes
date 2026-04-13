@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using WebAtividadeEntrevista.Infrastructure;
 
 namespace FI.WebAtividadeEntrevista
 {
@@ -18,7 +15,7 @@ namespace FI.WebAtividadeEntrevista
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
             // Registro do DependencyResolver customizado
-            DependencyResolver.SetResolver(new WebAtividadeEntrevista.Infrastructure.SimpleDependencyResolver());
+            DependencyResolver.SetResolver(new SimpleDependencyResolver());
         }
     }
 }

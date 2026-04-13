@@ -30,5 +30,6 @@ namespace FI.AtividadeEntrevista.DML
         /// IdCliente
         /// </summary>
         public long IdCliente { get; set; }
+
     }
 }
